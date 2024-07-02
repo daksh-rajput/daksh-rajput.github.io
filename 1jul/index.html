@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Page with Background Image</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-vector/colored-triangles-background-with-gradients_91008-286.jpg?w=740&t=st=1719898927~exp=1719899527~hmac=e3241a12cbb466f45154c71be94ad248b7477ab3d632ff67ae36b0ad03be197e');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh; /* Ensures background covers the whole viewport */
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px; /* Add padding to the body */
+        }
+        .content {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for content */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px; /* Adjust as needed */
+            margin-left: auto; /* Move content to the right */
+            text-align: left; /* Align text content to the left */
+        }
+        .btn-container {
+            text-align: center; /* Center aligns the button */
+        }
+        .btn {
+            background-color: #007bff; /* Blue background color for button */
+            color: #fff; /* White text color for button */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding inside button */
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none; /* Remove default link styling */
+            display: inline-block; /* Display as inline block */
+            margin-top: 20px; /* Margin top */
+        }
+    </style>
+</head>
+<body>
+    <div class="">
+        <div class="content bg-warning mb-3">
+            <h1>Graph Designic</h1>
+            <h5>Design pictures. Find over 100+ of the best free graphic design images.</h5>
+            <div class="btn-container">
+                <a href="https://example.com/" class="btn btn btn-danger ">Explore Images</a>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
