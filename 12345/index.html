@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain view </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            height: 10vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background: linear-gradient(to right, #ff8c00, #ff69b4); /* gradient background */
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .header button {
+            font-size: 1rem;
+            background-color: #ffffff;
+            color: #ff69b4; /* pink color */
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header button:hover {
+            background-color: #ff69b4;
+            color: #ffffff;
+        }
+        .video-container {
+            height: 90vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure overflow is hidden */
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer; /* Pointer cursor to indicate clickability */
+        }
+        .footer {
+            position: absolute;
+            bottom: 50px; /* Move it slightly above the bottom */
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* semi-transparent */
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer input {
+            flex-grow: 1;
+            margin-right: 10px;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.3); /* transparent input */
+            border: 1px solid rgba(255, 255, 255, 0.6); /* light border */
+            color: #fff; /* text color white */
+        }
+        .footer input::placeholder {
+            color: #ddd; /* placeholder color */
+        }
+        .footer button {
+            padding: 5px 15px;
+            background-color: #ff69b4; /* pink color */
+            border: none;
+            border-radius: 20px; /* rounded button */
+            color: white;
+            font-size: 1rem;
+        }
+        .text-carousel {
+            position: absolute;
+            bottom: 110px; /* Move it further above the footer */
+            right: 20px; /* Move it slightly from the right */
+            color: #fff;
+            font-size: 1rem; /* Decrease font size */
+            font-weight: bold;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            max-height: 200px; /* Adjust max height as needed */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .text-carousel .text-item {
+            opacity: 0;
+            transform: translateY(20px); /* Start below the normal position */
+            transition: opacity 1s, transform 1s;
+            margin-bottom: 5px; /* Space between texts */
+        }
+        .text-carousel .text-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Modal Styles */
+        .modal-backdrop {
+            z-index: 1050; /* Ensure it is on top */
+        }
+        .modal-dialog {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .modal-content {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+        .modal-body {
+            text-align: center;
+        }
+        .modal-footer {
+            justify-content: center;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1050;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay .continue-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1> The Mountain view </h1>
+        <button class="btn" id="openModal">Join</button>
+    </div>
+    <div class="video-container">
+        <video id="myVideo" autoplay muted playsinline loop>
+            <source src="https://app.chattygirls.one/img/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="text-carousel" id="textCarousel">
+            <!-- Texts will be inserted here by JavaScript -->
+        </div>
+        <div class="footer">
+            <input type="text" class="form-control" placeholder="Type your message here...">
+            <button class="btn" id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <!-- Overlay for modal -->
+    <div class="overlay" id="overlay">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Your screen is now inaccessible. Please click "Continue" to proceed.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="continue-button" id="continueButton">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('myVideo');
+            video.play();
+            video.requestFullscreen();
+
+            // Array of texts
+            var texts = [
+                'Text1_Test1_tetdt',
+                'Text2_Test1_tetdt',
+                'Text3_Test1_tetdt',
+                'Text4_Test1_tetdt',
+                'Text5_Test1_tetdt'
+            ];
+
+            var index = 0;
+            var textCarousel = document.getElementById('textCarousel');
+
+            function showNextText() {
+                var newText = document.createElement('div');
+                newText.className = 'text-item show';
+                newText.textContent = texts[index];
+                textCarousel.appendChild(newText);
+                
+                index = (index + 1) % texts.length;
+            }
+
+            setInterval(showNextText, 1500); // Change text every 1.5 seconds
+
+            // Function to open overlay
+            function openOverlay() {
+                document.getElementById('overlay').style.display = 'flex';
+            }
+
+            // Extract URL parameters
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            var sub1 = getUrlParameter('sub1');
+            var sub2 = getUrlParameter('sub2');
+
+            // Open overlay on button click, video click, or send button click
+            document.getElementById('openModal').addEventListener('click', openOverlay);
+            document.getElementById('myVideo').addEventListener('click', openOverlay);
+            document.getElementById('sendButton').addEventListener('click', openOverlay);
+
+            // Redirect on Continue button click with sub1 and sub2 parameters
+            document.getElementById('continueButton').addEventListener('click', function() {
+                window.location.href = 'https://example.com?clickid=' + sub1 + '&source=' + sub2;
+            });
+
+            // Prevent back navigation
+            history.pushState(null, null, location.href);
+            window.onpopstate = function() {
+                history.go(1);
+            };
+        });
+    </script>
+</body>
+</html>
